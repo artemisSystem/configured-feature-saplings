@@ -1,0 +1,13 @@
+{
+	"required": true,
+	"minVersion": "0.8",
+	"package": "artemis.configured_feature_saplings.mixin",
+	"compatibilityLevel": "JAVA_17",
+	"mixins": [
+		"MushroomBlockMixin",
+		"AbstractTreeGrowerMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
