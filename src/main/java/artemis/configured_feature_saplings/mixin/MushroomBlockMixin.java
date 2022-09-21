@@ -21,16 +21,16 @@ public class MushroomBlockMixin {
 	@Redirect(
 		method = "growMushroom(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Ljava/util/Random;)Z",
 		at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/levelgen/feature/ConfiguredFeature;place(Lnet/minecraft/world/level/WorldGenLevel;Lnet/minecraft/world/level/chunk/ChunkGenerator;Ljava/util/Random;Lnet/minecraft/core/BlockPos;)Z"))
-	private boolean configured_feature_saplings_fixMushrooms(ConfiguredFeature<?,?> staticConfiguredFeature, WorldGenLevel level, ChunkGenerator chunkGenerator, Random randomSource, BlockPos blockPos) {
+	private boolean configured_feature_saplings_fixMushrooms(ConfiguredFeature<?,?> staticConfiguredFeature, WorldGenLevel level, ChunkGenerator chunkGenerator, Random random, BlockPos blockPos) {
 		Optional<ResourceKey<ConfiguredFeature<?, ?>>> optionalKey = BuiltinRegistries.CONFIGURED_FEATURE.getResourceKey(staticConfiguredFeature);
 		if (optionalKey.isPresent()) {
 			Registry<ConfiguredFeature<?, ?>> dynamicRegistryCF = level.registryAccess().registryOrThrow(Registry.CONFIGURED_FEATURE_REGISTRY);
 			Optional<ConfiguredFeature<?, ?>> dynamicCF = dynamicRegistryCF.getOptional(optionalKey.get().location());
 			if (dynamicCF.isPresent()) {
-				return dynamicCF.get().place(level, chunkGenerator, randomSource, blockPos);
+				return dynamicCF.get().place(level, chunkGenerator, random, blockPos);
 			}
 		}
 
-		return staticConfiguredFeature.place(level, chunkGenerator, randomSource, blockPos);
+		return staticConfiguredFeature.place(level, chunkGenerator, random, blockPos);
 	}
 }
