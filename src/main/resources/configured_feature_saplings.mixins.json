@@ -6,7 +6,9 @@
 	"mixins": [
 		"MushroomBlockMixin",
 		"AbstractTreeGrowerMixin",
-		"AbstractMegaTreeGrowerMixin"
+		"AbstractMegaTreeGrowerMixin",
+		"FungusBlockMixin",
+		"MossBlockMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
